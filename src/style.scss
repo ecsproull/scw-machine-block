@@ -1,0 +1,89 @@
+// Frontend styles
+.scw-machine-block {
+	margin: 2rem 0;
+	padding: 1.5rem;
+	background: #fff;
+	border: 1px solid #e0e0e0;
+	border-radius: 8px;
+
+	&__content {
+		display: flow-root; // Clears floats
+	}
+
+	&__image-container {
+		float: left;
+		margin: 0 1.5rem 1rem 0;
+		max-width: 200px;
+	}
+
+	&__image {
+		width: 200px;
+		height: 200px;
+		object-fit: cover;
+		border-radius: 4px;
+		display: block;
+	}
+
+	&__text-content {
+		overflow: hidden; // Creates new block formatting context for text wrap
+	}
+
+	&__section {
+		margin-bottom: 1.5rem;
+
+		h3 {
+			margin: 0 0 0.5rem 0;
+			font-size: 1.25rem;
+			font-weight: 600;
+			color: #333;
+		}
+
+		&--warning {
+			background: #fff3cd;
+			padding: 1rem;
+			border-left: 4px solid #ffc107;
+			border-radius: 4px;
+
+			h3 {
+				color: #856404;
+			}
+
+			.scw-machine-block__warnings {
+				color: #856404;
+			}
+		}
+	}
+
+	&__description,
+	&__usage,
+	&__cleaning,
+	&__safety,
+	&__warnings {
+		p {
+			margin: 0 0 0.75rem 0;
+			line-height: 1.6;
+
+			&:last-child {
+				margin-bottom: 0;
+			}
+		}
+
+		ul, ol {
+			margin: 0 0 0.75rem 1.5rem;
+			line-height: 1.6;
+
+			&:last-child {
+				margin-bottom: 0;
+			}
+		}
+	}
+
+	// Responsive adjustments
+	@media (max-width: 768px) {
+		&__image-container {
+			float: none;
+			margin: 0 auto 1.5rem;
+			max-width: 200px;
+		}
+	}
+}

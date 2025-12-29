@@ -1,0 +1,62 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "scw/machine-block",
+	"version": "1.0.0",
+	"title": "Machine Description",
+	"category": "widgets",
+	"icon": "admin-tools",
+	"description": "Display machinery information with image, description, usage, safety, and warnings.",
+	"supports": {
+		"html": false,
+		"align": true
+	},
+	"attributes": {
+		"imageId": {
+			"type": "number",
+			"default": 0
+		},
+		"imageUrl": {
+			"type": "string",
+			"default": ""
+		},
+		"imageAlt": {
+			"type": "string",
+			"default": ""
+		},
+		"description": {
+			"type": "string",
+			"source": "html",
+			"selector": ".scw-machine-block__description",
+			"default": ""
+		},
+		"usageInstructions": {
+			"type": "string",
+			"source": "html",
+			"selector": ".scw-machine-block__usage",
+			"default": ""
+		},
+		"cleaning": {
+			"type": "string",
+			"source": "html",
+			"selector": ".scw-machine-block__cleaning",
+			"default": ""
+		},
+		"safetyIssues": {
+			"type": "string",
+			"source": "html",
+			"selector": ".scw-machine-block__safety",
+			"default": ""
+		},
+		"warnings": {
+			"type": "string",
+			"source": "html",
+			"selector": ".scw-machine-block__warnings",
+			"default": ""
+		}
+	},
+	"textdomain": "scw-machine-block",
+	"editorScript": "file:./build/index.js",
+	"editorStyle": "file:./build/editor.css",
+	"style": "file:./build/style.css"
+}
