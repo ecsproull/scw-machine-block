@@ -140,7 +140,7 @@ export default function Edit({ attributes, setAttributes }) {
 					</MediaUploadCheck>
 				</div>
 
-				<h3 className="scw-machine-block__heading">{__('Description', 'scw-machine-block')}</h3>
+				<h2 className="scw-machine-block__heading">{__('Description', 'scw-machine-block')}</h2>
 				<RichText
 					tagName="div"
 					identifier="description"
@@ -153,7 +153,7 @@ export default function Edit({ attributes, setAttributes }) {
 					)}
 				/>
 
-				<h3 className="scw-machine-block__heading">{__('Usage Instructions', 'scw-machine-block')}</h3>
+				<h2 className="scw-machine-block__heading">{__('Usage Instructions', 'scw-machine-block')}</h2>
 				<RichText
 					tagName="div"
 					identifier="usageInstructions"
@@ -166,7 +166,7 @@ export default function Edit({ attributes, setAttributes }) {
 					)}
 				/>
 
-				<h3 className="scw-machine-block__heading">{__('Cleaning', 'scw-machine-block')}</h3>
+				<h2 className="scw-machine-block__heading">{__('Cleaning', 'scw-machine-block')}</h2>
 				<RichText
 					tagName="div"
 					identifier="cleaning"
@@ -179,7 +179,7 @@ export default function Edit({ attributes, setAttributes }) {
 					)}
 				/>
 
-				<h3 className="scw-machine-block__heading">{__('Safety Issues', 'scw-machine-block')}</h3>
+				<h2 className="scw-machine-block__heading">{__('Safety Issues', 'scw-machine-block')}</h2>
 				<RichText
 					tagName="div"
 					identifier="safetyIssues"
@@ -192,7 +192,7 @@ export default function Edit({ attributes, setAttributes }) {
 					)}
 				/>
 
-				<h3 className="scw-machine-block__heading scw-machine-block__heading--warning">{__('⚠️ Warnings', 'scw-machine-block')}</h3>
+				<h2 className="scw-machine-block__heading scw-machine-block__heading--warning">{__('⚠️ Warnings', 'scw-machine-block')}</h2>
 				<RichText
 					tagName="div"
 					identifier="warnings"

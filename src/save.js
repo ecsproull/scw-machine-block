@@ -19,16 +19,18 @@ export default function save({ attributes }) {
 		<div {...blockProps}>
 			<div className="scw-machine-block__content">
 				{imageUrl && (
-					<img
-						src={imageUrl}
-						alt={imageAlt}
-						className="scw-machine-block__image"
-					/>
+					<div className="scw-machine-block__image-container">
+						<img
+							src={imageUrl}
+							alt={imageAlt}
+							className="scw-machine-block__image"
+						/>
+					</div>
 				)}
 
 				{description && (
 					<>
-						<h3 className="scw-machine-block__heading">Description</h3>
+						<h2 className="scw-machine-block__heading">Description</h2>
 						<RichText.Content
 							tagName="div"
 							className="scw-machine-block__description"
@@ -39,7 +41,7 @@ export default function save({ attributes }) {
 
 				{usageInstructions && (
 					<>
-						<h3 className="scw-machine-block__heading">Usage Instructions</h3>
+						<h2 className="scw-machine-block__heading">Usage Instructions</h2>
 						<RichText.Content
 							tagName="div"
 							className="scw-machine-block__usage"
@@ -50,7 +52,7 @@ export default function save({ attributes }) {
 
 				{cleaning && (
 					<>
-						<h3 className="scw-machine-block__heading">Cleaning</h3>
+						<h2 className="scw-machine-block__heading">Cleaning</h2>
 						<RichText.Content
 							tagName="div"
 							className="scw-machine-block__cleaning"
@@ -61,7 +63,7 @@ export default function save({ attributes }) {
 
 				{safetyIssues && (
 					<>
-						<h3 className="scw-machine-block__heading">Safety Issues</h3>
+						<h2 className="scw-machine-block__heading">Safety Issues</h2>
 						<RichText.Content
 							tagName="div"
 							className="scw-machine-block__safety"
@@ -72,7 +74,7 @@ export default function save({ attributes }) {
 
 				{warnings && (
 					<>
-						<h3 className="scw-machine-block__heading scw-machine-block__heading--warning">⚠️ Warnings</h3>
+						<h2 className="scw-machine-block__heading scw-machine-block__heading--warning">⚠️ Warnings</h2>
 						<RichText.Content
 							tagName="div"
 							className="scw-machine-block__warnings"
