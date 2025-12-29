@@ -6,9 +6,7 @@ import apiFetch from '@wordpress/api-fetch';
 
 export default function Edit({ attributes, setAttributes }) {
 	const {
-		imageId,
-		imageUrl,
-		imageAlt,
+		images = [],
 		description,
 		usageInstructions,
 		cleaning,
@@ -22,66 +20,78 @@ export default function Edit({ attributes, setAttributes }) {
 		className: 'scw-machine-block',
 	});
 
-	const onSelectImage = async (media) => {
-		// If there's an existing image, delete it
-		if (imageUrl) {
-			try {
-				await apiFetch({
-					path: '/scw/v1/delete-machine-image',
-					method: 'POST',
-					data: { imageUrl },
-				});
-			} catch (error) {
-				console.error('Error deleting previous image:', error);
-			}
-		}
-
+	const onSelectImages = async (mediaArray) => {
 		setIsProcessing(true);
 
 		try {
-			// Process the new image
-			const response = await apiFetch({
-				path: '/scw/v1/process-machine-image',
-				method: 'POST',
-				data: { imageId: media.id },
-			});
+			const processedImages = [];
 
-			setAttributes({
-				imageId: media.id,
-				imageUrl: response.url,
-				imageAlt: media.alt || 'Machine image',
-			});
-		} catch (error) {
-			console.error('Error processing image:', error);
-			// Fallback to original image if processing fails
-			setAttributes({
-				imageId: media.id,
-				imageUrl: media.url,
-				imageAlt: media.alt || 'Machine image',
-			});
+			// Process each selected image
+			for (const media of mediaArray) {
+				try {
+					const response = await apiFetch({
+						path: '/scw/v1/process-machine-image',
+						method: 'POST',
+						data: { imageId: media.id },
+					});
+
+					processedImages.push({
+						id: media.id,
+						url: response.url,
+						alt: media.alt || 'Machine image',
+					});
+				} catch (error) {
+					console.error('Error processing image:', error);
+					// Fallback to original image if processing fails
+					processedImages.push({
+						id: media.id,
+						url: media.url,
+						alt: media.alt || 'Machine image',
+					});
+				}
+			}
+
+			setAttributes({ images: processedImages });
 		} finally {
 			setIsProcessing(false);
 		}
 	};
 
-	const onRemoveImage = async () => {
-		if (imageUrl) {
+	const onRemoveImage = async (index) => {
+		const imageToRemove = images[index];
+		
+		if (imageToRemove && imageToRemove.url) {
 			try {
 				await apiFetch({
 					path: '/scw/v1/delete-machine-image',
 					method: 'POST',
-					data: { imageUrl },
+					data: { imageUrl: imageToRemove.url },
 				});
 			} catch (error) {
 				console.error('Error deleting image:', error);
 			}
 		}
 
-		setAttributes({
-			imageId: 0,
-			imageUrl: '',
-			imageAlt: '',
-		});
+		const newImages = images.filter((_, i) => i !== index);
+		setAttributes({ images: newImages });
+	};
+
+	const onRemoveAllImages = async () => {
+		for (const image of images) {
+			if (image.url) {
+				try {
+					await apiFetch({
+						path: '/scw/v1/delete-machine-image',
+						method: 'POST',
+						data: { imageUrl: image.url },
+					});
+				} catch (error) {
+					console.error('Error deleting image:', error);
+				}
+			}
+		}
+
+		setAttributes({ images: [] });
 	};
 
 	return (
@@ -90,44 +100,62 @@ export default function Edit({ attributes, setAttributes }) {
 				<div className="scw-machine-block__image-container">
 					<MediaUploadCheck>
 						<MediaUpload
-							onSelect={onSelectImage}
+							onSelect={onSelectImages}
 							allowedTypes={['image']}
-							value={imageId}
+							multiple={true}
+							gallery={true}
+							value={images.map(img => img.id)}
 							render={({ open }) => (
 								<div className="scw-machine-block__image-upload">
-									{!imageUrl ? (
+									{images.length === 0 ? (
 										<Button
 											onClick={open}
 											variant="secondary"
 											className="scw-machine-block__upload-button"
 										>
-											{__('Upload Machine Image', 'scw-machine-block')}
+											{__('Upload Machine Images', 'scw-machine-block')}
 										</Button>
 									) : (
-										<div className="scw-machine-block__image-wrapper">
-											{isProcessing ? (
+										<div className="scw-machine-block__image-gallery">
+											{isProcessing && (
 												<div className="scw-machine-block__processing">
 													<Spinner />
-													<p>{__('Processing image...', 'scw-machine-block')}</p>
+													<p>{__('Processing images...', 'scw-machine-block')}</p>
 												</div>
-											) : (
+											)}
+											{!isProcessing && (
 												<>
-													<img src={imageUrl} alt={imageAlt} />
+													<div className="scw-machine-block__thumbnails">
+														{images.map((image, index) => (
+															<div key={image.id} className="scw-machine-block__thumbnail">
+																<img src={image.url} alt={image.alt} />
+																<Button
+																	onClick={() => onRemoveImage(index)}
+																	variant="tertiary"
+																	isDestructive
+																	isSmall
+																	className="scw-machine-block__remove-thumbnail"
+																>
+																	{__('×', 'scw-machine-block')}
+																</Button>
+															</div>
+														))}
+													</div>
 													<div className="scw-machine-block__image-controls">
 														<Button
 															onClick={open}
 															variant="secondary"
 															isSmall
 														>
-															{__('Replace', 'scw-machine-block')}
+															{__('Add More Images', 'scw-machine-block')}
 														</Button>
 														<Button
-															onClick={onRemoveImage}
+															onClick={onRemoveAllImages}
 															variant="tertiary"
 															isDestructive
 															isSmall
 														>
-															{__('Remove', 'scw-machine-block')}
+															{__('Remove All', 'scw-machine-block')}
 														</Button>
 													</div>
 												</>

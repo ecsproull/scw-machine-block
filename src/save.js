@@ -2,8 +2,7 @@ import { useBlockProps, RichText } from '@wordpress/block-editor';
 
 export default function save({ attributes }) {
 	const {
-		imageUrl,
-		imageAlt,
+		images = [],
 		description,
 		usageInstructions,
 		cleaning,
@@ -18,13 +17,19 @@ export default function save({ attributes }) {
 	return (
 		<div {...blockProps}>
 			<div className="scw-machine-block__content">
-				{imageUrl && (
+				{images.length > 0 && (
 					<div className="scw-machine-block__image-container">
-						<img
-							src={imageUrl}
-							alt={imageAlt}
-							className="scw-machine-block__image"
-						/>
+						<div className="scw-machine-block__slideshow">
+							{images.map((image, index) => (
+								<img
+									key={index}
+									src={image.url}
+									alt={image.alt}
+									className={`scw-machine-block__image ${index === 0 ? 'active' : ''}`}
+									data-index={index}
+								/>
+							))}
+						</div>
 					</div>
 				)}
 

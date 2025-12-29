@@ -17,6 +17,13 @@
 	&__image-container {
 		float: left;
 		margin: 0 1.5rem 1rem 0;
+		position: relative;
+	}
+
+	&__slideshow {
+		position: relative;
+		width: 200px;
+		height: 200px;
 	}
 
 	&__image {
@@ -25,6 +32,15 @@
 		object-fit: cover;
 		border-radius: 4px;
 		display: block;
+		position: absolute;
+		top: 0;
+		left: 0;
+		opacity: 0;
+		transition: opacity 1s ease-in-out;
+
+		&.active {
+			opacity: 1;
+		}
 	}
 
 	&__heading {

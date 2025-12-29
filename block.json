@@ -12,17 +12,9 @@
 		"align": true
 	},
 	"attributes": {
-		"imageId": {
-			"type": "number",
-			"default": 0
-		},
-		"imageUrl": {
-			"type": "string",
-			"default": ""
-		},
-		"imageAlt": {
-			"type": "string",
-			"default": ""
+		"images": {
+			"type": "array",
+			"default": []
 		},
 		"description": {
 			"type": "string",
@@ -58,5 +50,6 @@
 	"textdomain": "scw-machine-block",
     "editorScript": "file:./build/index.js",
     "editorStyle": "file:./build/index.css",
-    "style": "file:./build/style-index.css"
+    "style": "file:./build/style-index.css",
+    "viewScript": "file:./build/view.js"
 }
