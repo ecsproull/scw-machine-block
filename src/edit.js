@@ -140,82 +140,70 @@ export default function Edit({ attributes, setAttributes }) {
 					</MediaUploadCheck>
 				</div>
 
-				<div className="scw-machine-block__text-content">
-					<div className="scw-machine-block__section">
-						<h3>{__('Description', 'scw-machine-block')}</h3>
-						<RichText
-							tagName="div"
-							identifier="description"
-							className="scw-machine-block__description"
-							value={description}
-							onChange={(value) => setAttributes({ description: value })}
-							placeholder={__(
-								'Enter machine description...',
-								'scw-machine-block'
-							)}
-						/>
-					</div>
+				<h3 className="scw-machine-block__heading">{__('Description', 'scw-machine-block')}</h3>
+				<RichText
+					tagName="div"
+					identifier="description"
+					className="scw-machine-block__description"
+					value={description}
+					onChange={(value) => setAttributes({ description: value })}
+					placeholder={__(
+						'Enter machine description...',
+						'scw-machine-block'
+					)}
+				/>
 
-					<div className="scw-machine-block__section">
-						<h3>{__('Usage Instructions', 'scw-machine-block')}</h3>
-						<RichText
-							tagName="div"
-							identifier="usageInstructions"
-							className="scw-machine-block__usage"
-							value={usageInstructions}
-							onChange={(value) => setAttributes({ usageInstructions: value })}
-							placeholder={__(
-								'Enter usage instructions...',
-								'scw-machine-block'
-							)}
-						/>
-					</div>
+				<h3 className="scw-machine-block__heading">{__('Usage Instructions', 'scw-machine-block')}</h3>
+				<RichText
+					tagName="div"
+					identifier="usageInstructions"
+					className="scw-machine-block__usage"
+					value={usageInstructions}
+					onChange={(value) => setAttributes({ usageInstructions: value })}
+					placeholder={__(
+						'Enter usage instructions...',
+						'scw-machine-block'
+					)}
+				/>
 
-					<div className="scw-machine-block__section">
-						<h3>{__('Cleaning', 'scw-machine-block')}</h3>
-						<RichText
-							tagName="div"
-							identifier="cleaning"
-							className="scw-machine-block__cleaning"
-							value={cleaning}
-							onChange={(value) => setAttributes({ cleaning: value })}
-							placeholder={__(
-								'Enter cleaning instructions...',
-								'scw-machine-block'
-							)}
-						/>
-					</div>
+				<h3 className="scw-machine-block__heading">{__('Cleaning', 'scw-machine-block')}</h3>
+				<RichText
+					tagName="div"
+					identifier="cleaning"
+					className="scw-machine-block__cleaning"
+					value={cleaning}
+					onChange={(value) => setAttributes({ cleaning: value })}
+					placeholder={__(
+						'Enter cleaning instructions...',
+						'scw-machine-block'
+					)}
+				/>
 
-					<div className="scw-machine-block__section">
-						<h3>{__('Safety Issues', 'scw-machine-block')}</h3>
-						<RichText
-							tagName="div"
-							identifier="safetyIssues"
-							className="scw-machine-block__safety"
-							value={safetyIssues}
-							onChange={(value) => setAttributes({ safetyIssues: value })}
-							placeholder={__(
-								'Enter safety issues...',
-								'scw-machine-block'
-							)}
-						/>
-					</div>
+				<h3 className="scw-machine-block__heading">{__('Safety Issues', 'scw-machine-block')}</h3>
+				<RichText
+					tagName="div"
+					identifier="safetyIssues"
+					className="scw-machine-block__safety"
+					value={safetyIssues}
+					onChange={(value) => setAttributes({ safetyIssues: value })}
+					placeholder={__(
+						'Enter safety issues...',
+						'scw-machine-block'
+					)}
+				/>
 
-					<div className="scw-machine-block__section scw-machine-block__section--warning">
-						<h3>{__('⚠️ Warnings', 'scw-machine-block')}</h3>
-						<RichText
-							tagName="div"
-							identifier="warnings"
-							className="scw-machine-block__warnings"
-							value={warnings}
-							onChange={(value) => setAttributes({ warnings: value })}
-							placeholder={__(
-								'Enter important warnings...',
-								'scw-machine-block'
-							)}
-						/>
-					</div>
-				</div>
+				<h3 className="scw-machine-block__heading scw-machine-block__heading--warning">{__('⚠️ Warnings', 'scw-machine-block')}</h3>
+				<RichText
+					tagName="div"
+					identifier="warnings"
+					className="scw-machine-block__warnings"
+					value={warnings}
+					onChange={(value) => setAttributes({ warnings: value })}
+					placeholder={__(
+						'Enter important warnings...',
+						'scw-machine-block'
+					)}
+				/>
 			</div>
 		</div>
 	);

@@ -7,13 +7,16 @@
 	border-radius: 8px;
 
 	&__content {
-		display: flow-root; // Clears floats
+		&::after {
+			content: "";
+			display: table;
+			clear: both;
+		}
 	}
 
 	&__image-container {
 		float: left;
 		margin: 0 1.5rem 1rem 0;
-		max-width: 200px;
 	}
 
 	&__image {
@@ -24,33 +27,23 @@
 		display: block;
 	}
 
-	&__text-content {
-		overflow: hidden; // Creates new block formatting context for text wrap
-	}
+	&__heading {
+		margin: 1rem 0 0.5rem 0;
+		font-size: 1.25rem;
+		font-weight: 600;
+		color: #333;
+		clear: none;
 
-	&__section {
-		margin-bottom: 1.5rem;
-
-		h3 {
-			margin: 0 0 0.5rem 0;
-			font-size: 1.25rem;
-			font-weight: 600;
-			color: #333;
+		&:first-of-type {
+			margin-top: 0;
 		}
 
 		&--warning {
+			color: #856404;
 			background: #fff3cd;
-			padding: 1rem;
+			padding: 0.5rem 1rem;
 			border-left: 4px solid #ffc107;
 			border-radius: 4px;
-
-			h3 {
-				color: #856404;
-			}
-
-			.scw-machine-block__warnings {
-				color: #856404;
-			}
 		}
 	}
 
@@ -59,6 +52,8 @@
 	&__cleaning,
 	&__safety,
 	&__warnings {
+		margin-bottom: 0.75rem;
+
 		p {
 			margin: 0 0 0.75rem 0;
 			line-height: 1.6;
@@ -76,6 +71,13 @@
 				margin-bottom: 0;
 			}
 		}
+	}
+
+	&__warnings {
+		color: #856404;
+		background: #fff3cd;
+		padding: 0.75rem;
+		border-radius: 4px;
 	}
 
 	// Responsive adjustments
