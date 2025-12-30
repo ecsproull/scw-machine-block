@@ -1,18 +1,26 @@
-import { useBlockProps, RichText, MediaUpload, MediaUploadCheck } from '@wordpress/block-editor';
+import { useBlockProps, MediaUpload, MediaUploadCheck, InnerBlocks } from '@wordpress/block-editor';
 import { Button, Spinner } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import { useState } from '@wordpress/element';
 import apiFetch from '@wordpress/api-fetch';
 
+const ALLOWED_BLOCKS = ['core/paragraph', 'core/list', 'core/heading'];
+
+const TEMPLATE = [
+	['core/heading', { level: 2, content: 'Description' }],
+	['core/paragraph', { placeholder: 'Enter machine description...' }],
+	['core/heading', { level: 2, content: 'Usage Instructions' }],
+	['core/paragraph', { placeholder: 'Enter usage instructions...' }],
+	['core/heading', { level: 2, content: 'Cleaning' }],
+	['core/paragraph', { placeholder: 'Enter cleaning instructions...' }],
+	['core/heading', { level: 2, content: 'Safety Issues' }],
+	['core/paragraph', { placeholder: 'Enter safety issues...' }],
+	['core/heading', { level: 2, content: '⚠️ Warnings' }],
+	['core/paragraph', { placeholder: 'Enter important warnings...' }],
+];
+
 export default function Edit({ attributes, setAttributes }) {
-	const {
-		images = [],
-		description,
-		usageInstructions,
-		cleaning,
-		safetyIssues,
-		warnings,
-	} = attributes;
+	const { images = [] } = attributes;
 
 	const [isProcessing, setIsProcessing] = useState(false);
 
@@ -168,69 +176,9 @@ export default function Edit({ attributes, setAttributes }) {
 					</MediaUploadCheck>
 				</div>
 
-				<h2 className="scw-machine-block__heading">{__('Description', 'scw-machine-block')}</h2>
-				<RichText
-					tagName="div"
-					identifier="description"
-					className="scw-machine-block__description"
-					value={description}
-					onChange={(value) => setAttributes({ description: value })}
-					placeholder={__(
-						'Enter machine description...',
-						'scw-machine-block'
-					)}
-				/>
-
-				<h2 className="scw-machine-block__heading">{__('Usage Instructions', 'scw-machine-block')}</h2>
-				<RichText
-					tagName="div"
-					identifier="usageInstructions"
-					className="scw-machine-block__usage"
-					value={usageInstructions}
-					onChange={(value) => setAttributes({ usageInstructions: value })}
-					placeholder={__(
-						'Enter usage instructions...',
-						'scw-machine-block'
-					)}
-				/>
-
-				<h2 className="scw-machine-block__heading">{__('Cleaning', 'scw-machine-block')}</h2>
-				<RichText
-					tagName="div"
-					identifier="cleaning"
-					className="scw-machine-block__cleaning"
-					value={cleaning}
-					onChange={(value) => setAttributes({ cleaning: value })}
-					placeholder={__(
-						'Enter cleaning instructions...',
-						'scw-machine-block'
-					)}
-				/>
-
-				<h2 className="scw-machine-block__heading">{__('Safety Issues', 'scw-machine-block')}</h2>
-				<RichText
-					tagName="div"
-					identifier="safetyIssues"
-					className="scw-machine-block__safety"
-					value={safetyIssues}
-					onChange={(value) => setAttributes({ safetyIssues: value })}
-					placeholder={__(
-						'Enter safety issues...',
-						'scw-machine-block'
-					)}
-				/>
-
-				<h2 className="scw-machine-block__heading scw-machine-block__heading--warning">{__('⚠️ Warnings', 'scw-machine-block')}</h2>
-				<RichText
-					tagName="div"
-					identifier="warnings"
-					className="scw-machine-block__warnings"
-					value={warnings}
-					onChange={(value) => setAttributes({ warnings: value })}
-					placeholder={__(
-						'Enter important warnings...',
-						'scw-machine-block'
-					)}
+				<InnerBlocks
+					allowedBlocks={ALLOWED_BLOCKS}
+					template={TEMPLATE}
 				/>
 			</div>
 		</div>

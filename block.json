@@ -15,36 +15,6 @@
 		"images": {
 			"type": "array",
 			"default": []
-		},
-		"description": {
-			"type": "string",
-			"source": "html",
-			"selector": ".scw-machine-block__description",
-			"default": ""
-		},
-		"usageInstructions": {
-			"type": "string",
-			"source": "html",
-			"selector": ".scw-machine-block__usage",
-			"default": ""
-		},
-		"cleaning": {
-			"type": "string",
-			"source": "html",
-			"selector": ".scw-machine-block__cleaning",
-			"default": ""
-		},
-		"safetyIssues": {
-			"type": "string",
-			"source": "html",
-			"selector": ".scw-machine-block__safety",
-			"default": ""
-		},
-		"warnings": {
-			"type": "string",
-			"source": "html",
-			"selector": ".scw-machine-block__warnings",
-			"default": ""
 		}
 	},
 	"textdomain": "scw-machine-block",
