@@ -104,7 +104,7 @@ export default function Edit({ attributes, setAttributes }) {
 
 	return (
 		<div {...blockProps}>
-			<div className="scw-machine-block__content">
+			<div className="scw-machine-block__image-section">
 				<div className="scw-machine-block__image-container">
 					<MediaUploadCheck>
 						<MediaUpload
@@ -118,7 +118,7 @@ export default function Edit({ attributes, setAttributes }) {
 									{images.length === 0 ? (
 										<Button
 											onClick={open}
-											variant="secondary"
+											variant="primary"
 											className="scw-machine-block__upload-button"
 										>
 											{__('Upload Machine Images', 'scw-machine-block')}
@@ -152,7 +152,7 @@ export default function Edit({ attributes, setAttributes }) {
 													<div className="scw-machine-block__image-controls">
 														<Button
 															onClick={open}
-															variant="secondary"
+															variant="primary"
 															isSmall
 														>
 															{__('Add More Images', 'scw-machine-block')}
@@ -175,7 +175,9 @@ export default function Edit({ attributes, setAttributes }) {
 						/>
 					</MediaUploadCheck>
 				</div>
+			</div>
 
+			<div className="scw-machine-block__content">
 				<InnerBlocks
 					allowedBlocks={ALLOWED_BLOCKS}
 					template={TEMPLATE}
