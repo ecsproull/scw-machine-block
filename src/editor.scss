@@ -161,6 +161,14 @@
 			}
 		}
 
+		&__warning-content {
+			color: #856404;
+			background: #fff3cd;
+			padding: 0.75rem;
+			border-radius: 4px;
+			border-left: 4px solid #ffc107;
+		}
+
 		&__description,
 		&__usage,
 		&__cleaning,

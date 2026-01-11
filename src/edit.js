@@ -9,14 +9,14 @@ const ALLOWED_BLOCKS = ['core/paragraph', 'core/list', 'core/heading'];
 const TEMPLATE = [
 	['core/heading', { level: 2, content: 'Description' }],
 	['core/paragraph', { placeholder: 'Enter machine description...' }],
+	['core/heading', { level: 2, content: '⚠️ Warnings', className: 'scw-machine-block__heading--warning' }],
+	['core/paragraph', { placeholder: 'Enter important warnings...', className: 'scw-machine-block__warning-content' }],
 	['core/heading', { level: 2, content: 'Usage Instructions' }],
 	['core/paragraph', { placeholder: 'Enter usage instructions...' }],
 	['core/heading', { level: 2, content: 'Cleaning' }],
 	['core/paragraph', { placeholder: 'Enter cleaning instructions...' }],
 	['core/heading', { level: 2, content: 'Safety Issues' }],
 	['core/paragraph', { placeholder: 'Enter safety issues...' }],
-	['core/heading', { level: 2, content: '⚠️ Warnings' }],
-	['core/paragraph', { placeholder: 'Enter important warnings...' }],
 ];
 
 export default function Edit({ attributes, setAttributes }) {
@@ -151,17 +151,25 @@ export default function Edit({ attributes, setAttributes }) {
 													</div>
 													<div className="scw-machine-block__image-controls">
 														<Button
-															onClick={open}
+															onClick={(e) => {
+																e.preventDefault();
+																e.stopPropagation();
+																open();
+															}}
 															variant="primary"
-															isSmall
+															size="compact"
 														>
 															{__('Add More Images', 'scw-machine-block')}
 														</Button>
 														<Button
-															onClick={onRemoveAllImages}
+															onClick={(e) => {
+																e.preventDefault();
+																e.stopPropagation();
+																onRemoveAllImages();
+															}}
 															variant="tertiary"
 															isDestructive
-															isSmall
+															size="compact"
 														>
 															{__('Remove All', 'scw-machine-block')}
 														</Button>

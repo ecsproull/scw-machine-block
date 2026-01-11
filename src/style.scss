@@ -63,6 +63,33 @@
 		}
 	}
 
+	&__warning-content {
+		color: #856404;
+		background: #fff3cd;
+		padding: 0.75rem;
+		border-radius: 4px;
+		border-left: 4px solid #ffc107;
+		margin-bottom: 0.75rem;
+
+		p {
+			margin: 0 0 0.75rem 0;
+			line-height: 1.6;
+
+			&:last-child {
+				margin-bottom: 0;
+			}
+		}
+
+		ul, ol {
+			margin: 0 0 0.75rem 1.5rem;
+			line-height: 1.6;
+
+			&:last-child {
+				margin-bottom: 0;
+			}
+		}
+	}
+
 	&__description,
 	&__usage,
 	&__cleaning,
