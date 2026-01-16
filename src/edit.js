@@ -4,7 +4,7 @@ import { __ } from '@wordpress/i18n';
 import { useState } from '@wordpress/element';
 import apiFetch from '@wordpress/api-fetch';
 
-const ALLOWED_BLOCKS = ['core/paragraph', 'core/list', 'core/heading'];
+const ALLOWED_BLOCKS = ['core/paragraph', 'core/list', 'core/heading', 'core/image'];
 
 const TEMPLATE = [
 	['core/heading', { level: 2, content: 'Description' }],
@@ -104,7 +104,7 @@ export default function Edit({ attributes, setAttributes }) {
 
 	return (
 		<div {...blockProps}>
-			<div className="scw-machine-block__image-section">
+			<div className="scw-machine-block__image-section" style={{ position: 'relative', zIndex: 1 }}>
 				<div className="scw-machine-block__image-container">
 					<MediaUploadCheck>
 						<MediaUpload
@@ -138,10 +138,14 @@ export default function Edit({ attributes, setAttributes }) {
 															<div key={image.id} className="scw-machine-block__thumbnail">
 																<img src={image.url} alt={image.alt} />
 																<Button
-																	onClick={() => onRemoveImage(index)}
+																	onClick={(e) => {
+																		e.preventDefault();
+																		e.stopPropagation();
+																		onRemoveImage(index);
+																	}}
 																	variant="tertiary"
 																	isDestructive
-																	isSmall
+																	size="compact"
 																	className="scw-machine-block__remove-thumbnail"
 																>
 																	{__('×', 'scw-machine-block')}
@@ -152,9 +156,9 @@ export default function Edit({ attributes, setAttributes }) {
 													<div className="scw-machine-block__image-controls">
 														<Button
 															onClick={(e) => {
-																e.preventDefault();
-																e.stopPropagation();
-																open();
+															 e.preventDefault();
+															 e.stopPropagation();
+															 open();
 															}}
 															variant="primary"
 															size="compact"
@@ -163,9 +167,9 @@ export default function Edit({ attributes, setAttributes }) {
 														</Button>
 														<Button
 															onClick={(e) => {
-																e.preventDefault();
-																e.stopPropagation();
-																onRemoveAllImages();
+															 e.preventDefault();
+															 e.stopPropagation();
+															 onRemoveAllImages();
 															}}
 															variant="tertiary"
 															isDestructive
